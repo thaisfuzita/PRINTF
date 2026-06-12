@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_puthexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjulya-c <tjulya-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaisfuzita <thaisfuzita@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 16:55:38 by tjulya-c          #+#    #+#             */
-/*   Updated: 2026/06/11 18:38:37 by tjulya-c         ###   ########.fr       */
+/*   Updated: 2026/06/12 00:47:46 by thaisfuzita      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_puthexa(unsigned int nbr, char c)
 	return (i);
 }
 
-int	ft_putlonghexa(unsigned long nbr)
+static int	ft_putlonghexa(unsigned long nbr)
 {
 	int		i;
 	char	*base;
@@ -52,7 +52,7 @@ int	ft_putptr(void *ptr)
 	{
 		write(1, "(nil)", 5);
 		return (5);
-	}
+	} 
 	p = (unsigned long)ptr;
 	write(1, "0x", 2);
 	i = 2;

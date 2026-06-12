@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjulya-c <tjulya-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaisfuzita <thaisfuzita@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/11 16:55:27 by tjulya-c          #+#    #+#             */
-/*   Updated: 2026/06/11 18:42:39 by tjulya-c         ###   ########.fr       */
+/*   Updated: 2026/06/12 00:16:04 by thaisfuzita      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	checktype(va_list *arguments, char c)
+static int	ft_checktype(va_list *arguments, char c)
 {
 	if (c == 'c')
 		return (ft_putchar(va_arg(*arguments, int)));
@@ -26,7 +26,7 @@ static int	checktype(va_list *arguments, char c)
 		return (ft_putunint(va_arg(*arguments, unsigned int)));
 	else if (c == 'x' || c == 'X')
 		return (ft_puthexa(va_arg(*arguments, unsigned int), c));
-	return (0);
+	return (ft_putchar('%') + ft_putchar(c));
 }
 
 int	ft_printf(const char *string, ...)
@@ -42,13 +42,13 @@ int	ft_printf(const char *string, ...)
 	va_start(arguments, string);
 	while (string[i])
 	{
-		if (string[i] == '%')
+		if (string[i] == '%' && string[i + 1] != '\0')
 		{
 			i++;
 			if (string[i] == '%')
 				count += ft_putchar('%');
 			else
-				count += checktype(&arguments, string[i]);
+				count += ft_checktype(&arguments, string[i]);
 		}
 		else
 			count += ft_putchar(string[i]);
